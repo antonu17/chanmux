@@ -4,7 +4,7 @@ import (
 	"sync"
 )
 
-type ChanMuxer[T interface{}] interface {
+type Muxer[T interface{}] interface {
 	Mux() <-chan T
 	Done() <-chan T
 }
@@ -14,7 +14,7 @@ type chanMux[T interface{}] struct {
 	done chan T
 }
 
-func New[T interface{}](cs []chan T) ChanMuxer[T] {
+func New[T interface{}](cs []chan T) Muxer[T] {
 	mux := make(chan T)
 	done := make(chan T)
 
